@@ -17,6 +17,14 @@ class DictTests(TranspileTestCase):
         self.assertRaises(TypeError, d.keys, None)
         self.assertEqual(repr(dict(a=1).keys()), "dict_keys(['a'])")
 
+    def test_values(self):
+        d = {}
+        self.assertEqual(set(d.values()), set())
+        d = {1: 2}
+        self.assertEqual(set(d.values()), {2})
+        self.assertRaises(TypeError, d.values, None)
+        self.assertEqual(repr(dict(a=1).values()), "dict_values([1])")
+
 
 class BuiltinDictFunctionTests(BuiltinFunctionTestCase, TranspileTestCase):
     functions = ["dict"]
