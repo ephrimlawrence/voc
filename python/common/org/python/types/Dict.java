@@ -418,7 +418,20 @@ public class Dict extends org.python.types.Object {
             __doc__ = "D.keys() -> a set-like object providing a view on D's keys"
     )
     public org.python.Object keys() {
-        throw new org.python.exceptions.NotImplementedError("dict.keys() has not been implemented.");
+        // throw new org.python.exceptions.NotImplementedError("dict.keys() has not been implemented.");
+        org.python.types.List keys = new org.python.types.List();
+
+        if (this.value.isEmpty()) {
+            return new org.python.types.List();
+        }
+
+        for (org.python.Object key : this.value.keySet()) {
+            if (key != null){
+                keys.append(key);
+            }
+        }
+
+        return keys;
     }
 
     @org.python.Method(
